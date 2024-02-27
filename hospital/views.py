@@ -28,7 +28,7 @@ def add_patient(request):
             form.save()
             return redirect('/hospital/patients/')
     else:       
-        form = PatientForm(initial={'first_name': request.user.first_name, 'last_name': request.user.last_name})
+        form = PatientForm() #initial={'first_name': request.user.first_name, 'last_name': request.user.last_name}
     context = {'form': form}
     return render(request, 'add_patient.html', context)
 
@@ -66,7 +66,7 @@ def add_doctor(request):
         else:
             print(form.errors)
     else:       
-        form = DoctorForm(initial={'first_name': request.user.first_name, 'last_name': request.user.last_name})
+        form = DoctorForm() # initial={'first_name': request.user.first_name, 'last_name': request.user.last_name}
     context = {'form': form}
     return render(request, 'add_doctor.html', context)
 
