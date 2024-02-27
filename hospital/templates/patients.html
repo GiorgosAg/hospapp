@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <title>Patients</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Patients</h1>
+      <a href="{% url 'hospital:add_patient' %}" class="btn btn-primary mb-3"
+        >Add Patient</a
+      >
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Allergies</th>
+            <th>Date of Birth</th>
+            <th>Insurance Provider</th>
+            <th>Insurance Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for patient in patients %}
+          <tr>
+            <td>{{ patient.first_name }}</td>
+            <td>{{ patient.last_name }}</td>
+            <td>{{patient.phone_number}}</td>
+            <td>{{patient.address}}</td>
+            <td>{{patient.email}}</td>
+            <td>{{patient.allergies}}</td>
+            <td>{{patient.date_of_birth}}</td>
+            <td>{{patient.insurance_provider}}</td>
+            <td>{{patient.insurance_id}}</td>
+            <td>
+              <form
+                action="{% url 'hospital:delete_patient' patient.id %}"
+                method="POST"
+                class="d-inline"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-sm"
+                  onclick="return confirm('Are you sure you want to delete this patient?')"
+                  title="Delete"
+                >
+                  Delete
+                </button>
+              </form>
+              <a
+                href="{% url 'hospital:update_patient' patient.id %}"
+                class="btn btn-secondary btn-sm"
+                title="Update"
+                >Update</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <a href="{% url 'hospital:index' %}">Home</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
