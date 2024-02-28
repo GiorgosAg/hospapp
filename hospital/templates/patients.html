@@ -43,6 +43,14 @@
             <td>{{patient.insurance_provider}}</td>
             <td>{{patient.insurance_id}}</td>
             <td>
+              <a
+                href="{% url 'hospital:update_patient' patient.id %}"
+                class="btn btn-secondary btn-sm"
+                title="Update"
+                >Update</a
+              >
+            </td>
+            <td>
               <form
                 action="{% url 'hospital:delete_patient' patient.id %}"
                 method="POST"
@@ -58,12 +66,6 @@
                   Delete
                 </button>
               </form>
-              <a
-                href="{% url 'hospital:update_patient' patient.id %}"
-                class="btn btn-secondary btn-sm"
-                title="Update"
-                >Update</a
-              >
             </td>
           </tr>
           {% endfor %}

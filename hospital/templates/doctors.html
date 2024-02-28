@@ -37,6 +37,14 @@
             <td>{{doctor.email}}</td>
             <td>{{doctor.specialty}}</td>
             <td>
+              <a
+                href="{% url 'hospital:update_doctor' doctor.id %}"
+                class="btn btn-secondary btn-sm"
+                title="Update"
+                >Update</a
+              >
+            </td>
+            <td>
               <form
                 action="{% url 'hospital:delete_doctor' doctor.id %}"
                 method="POST"
@@ -52,12 +60,6 @@
                   Delete
                 </button>
               </form>
-              <a
-                href="{% url 'hospital:update_doctor' doctor.id %}"
-                class="btn btn-secondary btn-sm"
-                title="Update"
-                >Update</a
-              >
             </td>
           </tr>
           {% endfor %}
